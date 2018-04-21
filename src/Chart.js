@@ -1,14 +1,11 @@
 import React from 'react';
 import { HorizontalGridLines, LineSeries, XAxis, XYPlot, YAxis } from 'react-vis';
-
+import range from 'lodash/range';
 import 'react-vis/dist/style.css'
 
 function generateDataSet(fn, step = 0.1, max = 6) {
-  const data = [];
-  for (let i = 0; i < max; i += step) {
-    data.push({x: i, y: fn(i)})
-  }
-  return data;
+  return range(0, max, step)
+    .map(x => ({x: x, y: fn(x)}));
 }
 
 export default ({fn, data}) => {
